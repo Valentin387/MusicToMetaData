@@ -13,6 +13,7 @@ def extract_metadata(file_path):
     try:
         audio = MP3(file_path)
         metadata = {
+            'name': os.path.basename(file_path),
             'title': audio.tags.get('TIT2', [''])[0],
             'subtitle': audio.tags.get('TIT3', [''])[0],
             'bitrate': int(audio.info.bitrate / 1000),  # Convert to kbps
@@ -34,7 +35,7 @@ def extract_metadata(file_path):
         return None
 
 def main():
-    folder_path = r'C:\Users\VALENTIN\Music\Montreal Expedition'  # Replace with the path to your folder
+    folder_path = r'C:\Users\VALENTIN\Music\ALL SONGS\1. WORKOUT'  # Replace with the path to your folder
     all_metadata = []
     for file_name in os.listdir(folder_path):
         if file_name.endswith('.mp3'):
