@@ -24,7 +24,7 @@ def extract_metadata(file_path):
             'album': audio.tags.get('TALB', [''])[0],
             'year': audio.tags.get('TDRC', [''])[0],
             'track_number': audio.tags.get('TRCK', [''])[0],
-            'genre': audio.tags.get('TCON', [''])[0],
+            'genre': get_genres(audio.tags),
             'duration': int(audio.info.length)  # Duration in seconds
         }
         # Convert values to JSON serializable format
@@ -34,8 +34,17 @@ def extract_metadata(file_path):
         print(f"Error extracting metadata from {file_path}: {str(e)}")
         return None
 
+def get_genres(tags):
+    tcon = tags.get('TCON')
+    if not tcon:
+        return ''
+    # tcon.text es la lista de géneros
+    if hasattr(tcon, 'text') and tcon.text:
+        return ', '.join(str(g) for g in tcon.text)
+    return str(tcon)
+
 def main():
-    folder_path = r"C:/Users/valentin/Music/workout 02"  # Replace with the path to your folder
+    folder_path = r"C:/Users/valentin/Music/workout_04"  # Replace with the path to your folder
     all_metadata = []
     for file_name in os.listdir(folder_path):
         if file_name.endswith('.mp3'):

@@ -24,7 +24,7 @@ This Python script extracts metadata from MP3 files and saves it to a JSON file.
 2. Make sure you have Python installed on your system.
 3. Install the required dependencies by running `pip install mutagen`.
 4. Edit the `folder_path` variable in the script to specify the directory containing your MP3 files.
-5. Run the script by executing `python mp3_metadata_reader.py` in your terminal or command prompt.
+5. Run the script by executing `python main.py` in your terminal or command prompt.
 6. The script will extract metadata from all MP3 files in the specified directory and save it to a JSON file named `metadata.json`.
 
 ## Requirements
